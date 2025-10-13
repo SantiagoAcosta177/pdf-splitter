@@ -6,7 +6,9 @@ import * as pdfjsLib from 'pdfjs-dist'
 import { saveAs } from 'file-saver'
 
 // Configurar worker de PDF.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`
+if (typeof window !== 'undefined') {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`
+}
 
 interface PDFPage {
   pageNumber: number
