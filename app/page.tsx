@@ -109,11 +109,6 @@ export default function LoginPage() {
             </button>
           </form>
           
-          <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-md">
-            <p className="text-sm text-yellow-800">
-              <strong>Demo:</strong> Usuario: <code>Fabricio</code>, Contraseña: <code>Fabricio2025!</code>
-            </p>
-          </div>
         </div>
       </div>
     </div>
