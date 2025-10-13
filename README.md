@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PDF Splitter
 
 Una aplicación web moderna para dividir PDFs con interfaz intuitiva tipo iLovePDF. Permite subir un PDF, seleccionar páginas específicas o rangos, y descargar un nuevo PDF con solo las páginas seleccionadas.
@@ -159,3 +160,6 @@ Las contribuciones son bienvenidas. Por favor:
 ---
 
 **Desarrollado con ❤️ usando Next.js y TypeScript**
+=======
+# pdf-splitter
+>>>>>>> 6d65a01a1bfac122c49b8881ac5e10bd717bb9ab
