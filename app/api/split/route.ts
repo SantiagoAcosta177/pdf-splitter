@@ -78,9 +78,13 @@ export async function POST(request: NextRequest) {
     // Generar PDF final
     const pdfBytes = await newPdf.save()
 
-    // Envolver en Blob para cumplir con BodyInit y setear headers
-    const blob = new Blob([pdfBytes], { type: 'application/pdf' })
-    return new NextResponse(blob, {
+    // Convertir a ArrayBuffer adecuado (slicing para longitud exacta)
+    const arrayBuffer = pdfBytes.buffer.slice(
+      pdfBytes.byteOffset,
+      pdfBytes.byteOffset + pdfBytes.byteLength
+    )
+
+    return new NextResponse(arrayBuffer as ArrayBuffer, {
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': 'attachment; filename="paginas_extraidas.pdf"',
