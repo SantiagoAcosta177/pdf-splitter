@@ -78,13 +78,14 @@ export async function POST(request: NextRequest) {
     // Generar PDF final
     const pdfBytes = await newPdf.save()
 
-    // Crear respuesta con el PDF
-    const response = new NextResponse(pdfBytes)
-    response.headers.set('Content-Type', 'application/pdf')
-    response.headers.set('Content-Disposition', 'attachment; filename="paginas_extraidas.pdf"')
-    response.headers.set('Content-Length', pdfBytes.length.toString())
-
-    return response
+    // Envolver en Blob para cumplir con BodyInit y setear headers
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' })
+    return new NextResponse(blob, {
+      headers: {
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': 'attachment; filename="paginas_extraidas.pdf"',
+      },
+    })
 
   } catch (error) {
     console.error('Error procesando PDF:', error)
