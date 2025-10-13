@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { parse } from 'cookie'
 
 export async function GET(request: NextRequest) {
   try {
-    const cookies = parse(request.headers.get('cookie') || '')
-    
-    if (cookies.session === 'authenticated') {
+    const session = request.cookies.get('session')?.value
+    if (session === 'authenticated') {
       return NextResponse.json({ authenticated: true })
     } else {
       return NextResponse.json(

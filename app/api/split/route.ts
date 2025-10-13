@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { PDFDocument } from 'pdf-lib'
-import { parse } from 'cookie'
 
 export async function POST(request: NextRequest) {
   try {
     // Verificar autenticación
-    const cookies = parse(request.headers.get('cookie') || '')
-    if (cookies.session !== 'authenticated') {
+    const session = request.cookies.get('session')?.value
+    if (session !== 'authenticated') {
       return NextResponse.json(
         { error: 'No autorizado' },
         { status: 401 }
