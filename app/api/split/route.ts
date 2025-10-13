@@ -79,12 +79,12 @@ export async function POST(request: NextRequest) {
     const pdfBytes = await newPdf.save()
 
     // Convertir a ArrayBuffer adecuado (slicing para longitud exacta)
-    const arrayBuffer = pdfBytes.buffer.slice(
+    const resultBuffer = pdfBytes.buffer.slice(
       pdfBytes.byteOffset,
       pdfBytes.byteOffset + pdfBytes.byteLength
     )
 
-    return new NextResponse(arrayBuffer as ArrayBuffer, {
+    return new NextResponse(resultBuffer as ArrayBuffer, {
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': 'attachment; filename="paginas_extraidas.pdf"',
